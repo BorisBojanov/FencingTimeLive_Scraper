@@ -177,17 +177,17 @@ async def extract_tableau_data(page, tableau_url, event_title):
                 club_elements = await cell.query_selector(".tcaff") #format <span class="tcaff"><br>EPIC / Alberta / <span class="flag flagCAN"></span>CAN</span>
                 club_info = await club_elements.inner_text() if club_elements else "" #format: \nEPIC / Alberta / CAN
                 club_info = club_info.split("/") if club_info else [] #format: ['\nEPIC ', ' Alberta ', ' CAN']
-                club_info = [info.strip() for info in club_info]    #format: ['EPIC', 'Alberta', 'CAN']
-
+                club_info = [info.strip("\n") for info in club_info]    #format: ['EPIC', 'Alberta', 'CAN']
+                
                 seed = await seed_element.inner_text() if seed_element else "" #format: (62)\xa0
                 seed = seed.replace("\xa0", "").strip("()") # format: 62
 
                 last_name = await lastname_element.inner_text() if lastname_element else ""
                 first_name = await firstname_element.inner_text() if firstname_element else ""
-                club_name = club_info[0].strip() if club_info else ""
-                club_region = club_info[1] if club_info else ""
-                club_country = club_info[2] if club_info else ""
 
+                club_name = club_info[0].strip() if club_info else ""
+                club_region = club_info[1].strip() if club_info else ""
+                club_country = club_info[2].strip() if club_info else ""
 
                 # Append the extracted data to the results list.
                 # added placeholder for the score and referee
