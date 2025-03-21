@@ -9,7 +9,6 @@ The data is saved to a CSV file with the tournament name in the filename.
 import argparse  # Import argparse for command-line arguments
 import asyncio
 import re
-# import asyncpg
 import csv
 from dotenv import load_dotenv
 from playwright.async_api import async_playwright
@@ -21,9 +20,9 @@ load_dotenv()
 BASE_URL = "https://www.fencingtimelive.com"
 F = {"C": 10, "J": 20, "S": 30, "O": 30, "V": 20}
 
-#Sanitize the tournament name to create a valid filename
+#Clean the tournament name to create a valid filename
 def sanitize_filename(name):
-    """Sanitize the tournament name to create a valid filename."""
+    """Clean the tournament name to create a valid filename."""
     return re.sub(r'[<>:"/\\|?*°]', '', name).replace(' ', '_')
 
 #Convert French to English
@@ -97,7 +96,9 @@ async def fetch_event_links(page):
     for row in rows:
         row_type = await row.get_attribute("class")
         if row_type == "clickable-row":
-            path = await row.get_attribute("data-href")
+            path = await row.get_attribute("data-href") 
+            #data-href="/events/view/B842E0E22FA947FEA4EF37DF113A2FB6"
+            #path = "/events/view/B842E0E22FA947FEA4EF37DF113A2FB6"
             if path:
                 paths.append(path)
 
