@@ -28,4 +28,6 @@ RUN playwright install --with-deps chromium
 COPY FencingTimeLive_CSV_script.py .
 
 # Define the command to run the script
+# Using ENTRYPOINT allows us to specify the executable for the container
+# and ensures that any arguments passed to 'docker run' are forwarded to the script.
 ENTRYPOINT ["python", "FencingTimeLive_CSV_script.py"]
