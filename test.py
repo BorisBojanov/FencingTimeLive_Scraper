@@ -5,6 +5,10 @@ import argparse
 from playwright.async_api import async_playwright
 from collections import defaultdict
 
+'''
+TODO: add a round header cell that shows which round the match took place in.
+TODO: add a winner header cell that shows which of the who fencers won the match.
+'''
 base_url = "https://www.fencingtimelive.com"
 tableau_scores_url = f"{base_url}/tableaus/scores"
 
