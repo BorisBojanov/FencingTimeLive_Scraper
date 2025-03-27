@@ -120,13 +120,19 @@ async def process_event(page, path, tournament_name):
     title_parts = title.split()
     if len(title_parts) == 3:
         title_parts[1] = title_parts[1].split("'")[0]
+    elif len(title_parts) == 2:
+        title_parts.append(title_parts[1].split("'")[0])
+        title_parts[1] = title_parts[0]
+
+
+        
     
     event_data = {
         "tournament": tournament_name,
         "level": title_parts[0],
         "sex": title_parts[1],
-        "weapon": convertFrenchToEnglish(title_parts[2]),
-        "full_text": " ".join(title_parts),
+        "weapon": "title_parts",
+        "full_text": convertFrenchToEnglish(title_parts[-1]),
         "time": time,
         "event_url": BASE_URL + path
     }
