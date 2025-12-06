@@ -1,10 +1,19 @@
-
 '''
 This script will run all the individual scraping scripts for FencingTimeLive.
 
 Poolsheet_FencingTimeLive_CSV_script.py 
 Tableau_FencingTimeLive_CSV_script.py
 Results_FencingTimeLive_CSV_script.py
+
+It takes a single command-line argument: the tournament URL from fencingtimelive.com
+Usage:
+    python3.13 runAllTheFencingTimeScripts.py <tournament_url>
+
+Example:
+    python3.13 runAllTheFencingTimeScripts.py "https://www.fencingtimelive.com/tournaments/eventSchedule/139B9901A42841D0A83B3B451DD2E78C#today"
+
+Author: Boris Bojanov
+Date: Dec 5, 2025
 '''
 
 import argparse  # Import argparse for command-line arguments
