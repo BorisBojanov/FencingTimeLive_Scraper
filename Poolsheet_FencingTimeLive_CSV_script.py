@@ -17,15 +17,39 @@ from playwright.async_api import async_playwright
 
 BASE_URL = "https://www.fencingtimelive.com"
 
+"""Clean the tournament name to create a valid filename
+
+Arguments:
+name -- Tournament name string
+
+Return: filename string
+"""
 def sanitize_filename(name):
     """Sanitize the tournament name to create a valid filename."""
     return re.sub(r'[<>:"/\\|?*°]', '', name).replace(' ', '_')
 
+"""Helper Convert French to English
+translations stored in a dictionary
+
+Arguments:
+weapon -- Weapon name in French or English
+Returns:
+str() -- Weapon name in English
+"""
 def convert_french_to_english(weapon):
     """Convert French weapon names to English."""
     translations = {"épée": "epee", "Épée": "Epee"}
     return translations.get(weapon, weapon)
 
+"""Fetch the tournament name from the tournament page.
+
+Arguments:
+page -- Playwright page object
+tournament_url -- URL of the tournament page
+
+Returns:
+tournament_name -- Name of the tournament as a string
+"""
 async def fetch_tournament_name(page, tournament_url):
     """Fetch the tournament name from the tournament page."""
     await page.goto(tournament_url)
@@ -37,6 +61,13 @@ async def fetch_tournament_name(page, tournament_url):
         print(f"Error fetching tournament name: {e}")
         return "Unknown_Tournament"
 
+"""Extract event links from the tournament schedule page.
+
+Arguments:
+page -- Playwright page object
+Returns:
+event_links -- List of event URL paths
+"""
 async def fetch_event_links(page):
     """Extract event links from the tournament schedule page."""
     await page.wait_for_selector("tr")
@@ -48,6 +79,12 @@ async def fetch_event_links(page):
                 event_links.append(path)
     return event_links
 
+"""Extract the pools page link from the event's navigation bar.
+
+Keyword arguments:
+page -- Playwright page object
+Return: path -- URL path of the pools page
+"""
 async def fetch_pools_page_link(page):
     """Extract the pools page link from the event's navigation bar."""
     links = await page.query_selector_all("a[href*='/pools/scores/']")
@@ -56,8 +93,14 @@ async def fetch_pools_page_link(page):
             return href
     return None
 
+"""Extract pool IDs from the pools page.
+
+Arguments:
+page -- Playwright page object
+Return: pool_ids -- List of pool IDs
+"""
 async def fetch_pool_ids(page):
-    """Extract pool IDs from the pools page."""
+    
     try:
         for _ in range(20):
             pool_ids = await page.evaluate("window.ids || []")
@@ -70,8 +113,19 @@ async def fetch_pool_ids(page):
         print(f"Error extracting pool IDs: {e}")
         return []
 
+"""Scrape results for a specific pool.
+
+Arguments:
+page -- Playwright page object
+event_id -- ID of the event
+rid -- Results ID from the pools page
+pool_id -- ID of the pool to scrape
+tournament_name -- Name of the tournament
+
+Returns:
+results -- List of dictionaries containing pool results
+"""
 async def scrape_pool_results(page, event_id, rid, pool_id, tournament_name):
-    """Scrape results for a specific pool."""
     pool_url = f"{BASE_URL}/pools/details/{event_id}/{rid}/{pool_id}"
     await page.goto(pool_url)
     await page.wait_for_load_state("networkidle")
@@ -159,8 +213,16 @@ async def scrape_pool_results(page, event_id, rid, pool_id, tournament_name):
         print(f"Error scraping pool {pool_id}: {e}")
     return results
 
+"""Save bout orders and pool sheets into separate CSV files.
+
+Arguments:
+bout_orders -- List of bout order dictionaries
+pool_sheets -- List of pool sheet dictionaries
+tournament_name -- Name of the tournament
+
+Returns: None Saves two CSV files
+"""
 def save_to_two_csvs(bout_orders, pool_sheets, tournament_name):
-    """Save bout orders and pool sheets into separate CSV files."""
     if bout_orders:
         bout_filename = f"{sanitize_filename(tournament_name)}_bout_orders.csv"
         bout_headers = set()
@@ -182,6 +244,64 @@ def save_to_two_csvs(bout_orders, pool_sheets, tournament_name):
             writer.writeheader()
             writer.writerows(pool_sheets)
         print(f"Pool sheets saved to {sheet_filename}")
+
+async def run(tournament_url):
+    """Main function to orchestrate the scraping process."""
+    async with async_playwright() as p:
+        browser = await p.chromium.launch()
+        page = await browser.new_page()
+
+        # Fetch the tournament name
+        tournament_name = await fetch_tournament_name(page, tournament_url)
+
+        # Navigate to the tournament page
+        await page.goto(tournament_url)
+        await page.wait_for_load_state("networkidle")
+
+        # Extract event links
+        event_links = await fetch_event_links(page)
+
+        all_pool_results = []
+
+        # Iterate through each event
+        for event_path in event_links:
+            event_id = event_path.split("/")[-1]
+            event_url = f"{BASE_URL}{event_path}"
+
+            await page.goto(event_url)
+            await page.wait_for_load_state("networkidle")
+
+            # Extract pools page link
+            pools_page_link = await fetch_pools_page_link(page)
+            if not pools_page_link:
+                print(f"Skipping event {event_id} due to missing pools page.")
+                continue
+
+            rid = pools_page_link.split("/")[-1]
+            pools_page_url = f"{BASE_URL}{pools_page_link}"
+
+            await page.goto(pools_page_url)
+            await page.wait_for_load_state("networkidle")
+
+            # Extract pool IDs
+            pool_ids = await fetch_pool_ids(page)
+            if not pool_ids:
+                print(f"No pools found for event {event_id}")
+                continue
+
+            # Scrape results for each pool
+            for pool_id in pool_ids:
+                pool_results = await scrape_pool_results(page, event_id, rid, pool_id, tournament_name)
+                all_pool_results.extend(pool_results)
+
+        # Separate data into pool sheets and bout orders
+        pool_sheets = [row for row in all_pool_results if "Bouts list" in row]
+        bout_orders = [row for row in all_pool_results if "Fencer Right" in row and "Fencer Left" in row]
+
+        # Save to two separate CSV files
+        save_to_two_csvs(bout_orders, pool_sheets, tournament_name)
+
+        await browser.close()
 
 async def main(tournament_url):
     """Main function to orchestrate the scraping process."""

@@ -20,12 +20,23 @@ load_dotenv()
 BASE_URL = "https://www.fencingtimelive.com"
 F = {"C": 10, "J": 20, "S": 30, "O": 30, "V": 20}
 
-#Clean the tournament name to create a valid filename
+"""Clean the tournament name to create a valid filename
+
+Arguments:
+name -- Tournament name string
+
+Return: filename string
+"""
 def sanitize_filename(name):
     """Clean the tournament name to create a valid filename."""
     return re.sub(r'[<>:"/\\|?*°]', '', name).replace(' ', '_')
 
-#Convert French to English
+"""Helper Convert French to English
+Arguments:
+weapon -- Weapon name in French or English
+Returns:
+str() -- Weapon name in English
+"""
 def convertFrenchToEnglish(weapon):
     if weapon == "épée":
         return "epee"
@@ -34,11 +45,17 @@ def convertFrenchToEnglish(weapon):
     else:
         return weapon
 
-#Fetch tournament page
-""" 
+""" Fetch tournament page
 # 	1.	Launch a browser.
 #	2.	Navigate to the tournament page provided my command-line argument.
 #	3.	Extract the tournament name.
+
+Arguments:
+page -- Playwright page object
+tournament_url -- URL of the tournament page
+
+Returns:
+Tournament name as a string
 """
 async def fetch_tournament_info(page, tournament_url):
     """Fetches the tournament name from a given URL."""
@@ -52,40 +69,7 @@ async def fetch_tournament_info(page, tournament_url):
         print(f"Error fetching tournament name: {e}")
         return "Unknown_Tournament"
 
-# #Insert or Get session ID
-# async def get_or_create_season(db_conn, year=2024):
-#     season = await db_conn.fetchrow('SELECT _id FROM doc.seasons WHERE starting_year = $1', year)
-    
-#     if season:
-#         print("Season exists:", season["_id"])
-#         return season["_id"]
-
-#     result = await db_conn.fetchrow(
-#         'INSERT INTO doc.seasons (name, starting_year) VALUES ($1, $2) RETURNING _id',
-#         f"{year}-{year+1}",
-#         year
-#     )
-#     print("Inserted new season:", result["_id"])
-#     return result["_id"]
-
-# #Insert of get Tournament ID
-# async def get_or_create_tournament(db_conn, tournament_name, season_id):
-#     tournament = await db_conn.fetchrow('SELECT _id FROM doc.tournaments WHERE name = $1', tournament_name)
-
-#     if tournament:
-#         print("Tournament already exists:", tournament["_id"])
-#         return tournament["_id"]
-
-#     result = await db_conn.fetchrow(
-#         'INSERT INTO doc.tournaments (name, season_id) VALUES ($1, $2) RETURNING _id',
-#         tournament_name,
-#         season_id
-#     )
-#     print("Inserted tournament:", result["_id"])
-#     return result["_id"]
-
-#Extract Event Links
-"""
+""" Extract Event Links
 Finds all tr elements.
 Extracts data-href attributes.
 """
@@ -104,10 +88,17 @@ async def fetch_event_links(page):
 
     return paths
 
-#Process each event
-"""	
+"""	Process each event
 Extracts event title and time.
 Fetches fencer results.
+
+Arguments:
+page -- Playwright page object
+path -- Event path to navigate to
+tournament_name -- Name of the tournament
+
+Returns:
+List of fencer data dictionaries
 """
 async def process_event(page, path, tournament_name):
     """Scrapes data for a single event."""
@@ -143,32 +134,13 @@ async def process_event(page, path, tournament_name):
 
     return fencers
 
-# #Insert or Get Event ID
-# async def get_or_create_event(db_conn, tournament_id, title_parts, time, path):
-#     global weapon
-#     weapon = title_parts[2].lower()
-#     if weapon == "épée":
-#         weapon = "epee"
+"""Fetch and store fencer results
 
-#     ftl_id = path.split("/")[-1] if len(path.split("/")) == 4 else None
-
-#     event = await db_conn.fetchrow(
-#         'SELECT _id FROM doc.events WHERE tournament_id=$1 AND LOWER(level)=$2 AND LOWER(sex)=$3 AND LOWER(weapon)=$4',
-#         tournament_id, title_parts[0].lower(), title_parts[1].lower(), weapon
-#     )
-
-#     if event:
-#         return event["_id"]
-
-#     result = await db_conn.fetchrow(
-#         'INSERT INTO doc.events (tournament_id, level, sex, weapon, full_text, time_text, ftl_id) '
-#         'VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING _id',
-#         tournament_id, title_parts[0], title_parts[1], weapon, " ".join(title_parts), time, ftl_id
-#     )
-
-#     return result["_id"]
-
-#Fetch and store fencer results
+Arguments:
+page -- Playwright page object
+Returns:
+List of fencer data dictionaries
+"""
 async def fetch_fencer_results(page):
     fencers = []
     rows = await page.query_selector_all('table[id="resultList"] > tbody > tr')
@@ -186,6 +158,13 @@ async def fetch_fencer_results(page):
 
 """
 Writes the scraped data to a dynamically named CSV file.
+
+Arguments:
+data -- List of fencer data dictionaries
+tournament_name -- Name of the tournament
+
+Returns:
+None - writes to CSV file
 """
 def save_to_csv(data, tournament_name):
     if not data:
@@ -202,17 +181,18 @@ def save_to_csv(data, tournament_name):
 
     print(f"Data successfully saved to {filename}")
 
-async def run():
-    """Main function to scrape data and save it to a CSV file."""
+def parseArguments():
     parser = argparse.ArgumentParser(description="Scrape fencing tournament data from Fencing Time Live.")
     parser.add_argument("url", help="The tournament URL from fencingtimelive.com")
     args = parser.parse_args()
+    return args.url
 
+async def run(tournament_url):
     async with async_playwright() as p:
         browser = await p.chromium.launch()
         page = await browser.new_page()
 
-        tournament_name = await fetch_tournament_info(page, args.url)
+        tournament_name = await fetch_tournament_info(page, tournament_url)
         event_links = await fetch_event_links(page)
         all_fencers = []
 
@@ -224,18 +204,13 @@ async def run():
 
     save_to_csv(all_fencers, tournament_name)  # Pass tournament name to save_to_csv
 
-#Main function
-async def main():
-    """Main function to scrape data and save it to a CSV file."""
-    parser = argparse.ArgumentParser(description="Scrape fencing tournament data from Fencing Time Live.")
-    parser.add_argument("url", help="The tournament URL from fencingtimelive.com")
-    args = parser.parse_args()
-
+"""Main function to scrape data and save it to a CSV file."""
+async def main(tournament_url):
     async with async_playwright() as p:
         browser = await p.chromium.launch()
         page = await browser.new_page()
 
-        tournament_name = await fetch_tournament_info(page, args.url)
+        tournament_name = await fetch_tournament_info(page, tournament_url)
         event_links = await fetch_event_links(page)
         all_fencers = []
 
@@ -248,4 +223,5 @@ async def main():
     save_to_csv(all_fencers, tournament_name)  # Pass tournament name to save_to_csv
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    tournament_url = parseArguments()
+    asyncio.run(main(tournament_url))

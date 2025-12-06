@@ -18,20 +18,49 @@ from collections import defaultdict
 
 BASE_URL = "https://www.fencingtimelive.com"
 
+"""Clean the tournament name to create a valid filename
+
+Arguments:
+name -- Tournament name string
+
+Return: filename string
+"""
 def sanitize_filename(name):
     """Sanitize the tournament name to create a valid filename."""
     return re.sub(r'[<>:"/\\|?*°¬†]', '', name).replace(' ', '_')
 
+"""Helper Convert French to English
+translations stored in a dictionary
+
+Arguments:
+weapon -- Weapon name in French or English
+Returns:
+str() -- Weapon name in English
+"""
 def convert_french_to_english(weapon):
-    """Convert French weapon names to English."""
     translations = {"épée": "epee", "Épée": "Epee"}
     return translations.get(weapon, weapon)
 
-# Function to check if a string is formatted like a score
+""" Helper Function to check if a string is formatted like a score
+
+Arguments:
+text -- String to check
+
+Returns:
+bool -- True if the string looks like a score, False otherwise
+"""
 def looks_like_score(text):
     return bool(re.search(r"\d+\s*-\s*\d+", text))
 
-"""Fetch the tournament name from the tournament page."""
+"""Fetch the tournament name from the tournament page.
+
+Arguments:
+page -- Playwright page object
+tournament_url -- URL of the tournament page
+
+Returns:
+tournament_name -- Name of the tournament as a string
+"""
 async def fetch_tournament_name(page, tournament_url):
     await page.goto(tournament_url)
     await page.wait_for_load_state("networkidle")
@@ -42,7 +71,13 @@ async def fetch_tournament_name(page, tournament_url):
         print(f"Error fetching tournament name: {e}")
         return "Unknown_Tournament"
 
-"""Extract event links from the tournament schedule page."""
+"""Extract event links from the tournament schedule page.
+
+Arguments:
+page -- Playwright page object
+Returns:
+event_links -- List of event URL paths
+"""
 async def fetch_event_links(page):
     await page.wait_for_selector("tr")
     rows = await page.query_selector_all("tr")
@@ -53,7 +88,13 @@ async def fetch_event_links(page):
                 event_links.append(path)
     return event_links
 
-""" Extract the tableu page link from the navigation ba."""
+""" Extract the tableu page link from the navigation ba.
+
+Arguments:
+page -- Playwright page object
+Returns:
+path -- URL path of the tableau page
+"""
 async def fetch_tableau_link(page):
     await page.wait_for_selector("li")
     rows = await page.query_selector_all("li")
@@ -63,7 +104,14 @@ async def fetch_tableau_link(page):
                 print(path)
                 return path
 
-"""Extract the tableu page link from the event page."""
+"""Extract the tableu page link from the event page.
+
+Arguments:
+page -- Playwright page object
+
+Returns:
+path or None -- URL path of the tableau page
+"""
 async def fetch_tableau_results(page):
     links = await page.query_selector_all("a[href*='/tableaus/scores/']")
     if not links:
@@ -73,7 +121,16 @@ async def fetch_tableau_results(page):
             return path
     return None
 
-"""Extract tableau data from a tableau page."""
+"""Extract tableau data from a tableau page.
+
+Arguments:
+page -- Playwright page object
+tableau_url -- URL of the tableau page
+event_title -- Title of the event
+
+Returns:
+matrix -- 2D list representing the tableau data
+"""
 async def matrix_of_extracted_tableau_data(page, tableau_url, event_title):
     await page.goto(tableau_url)
     await page.wait_for_load_state("networkidle")
@@ -104,10 +161,16 @@ async def matrix_of_extracted_tableau_data(page, tableau_url, event_title):
         matrix.append(fencer_data)      
     return matrix
 
-"""
+""" Extract and pair fencers from the tableau matrix.
 1. Pair two fencers in the same column.
 2. Scan the vertical range between their rows, in the column to the right, to find a cell with a valid score.
 3. If none found, default to empty string.
+
+Arguments:
+matrix -- 2D list representing the tableau data
+
+Returns:
+matches -- List of tuples containing fencer pairs and their scores
 """
 def extract_fencer_matches(matrix):
     matches = []
@@ -151,7 +214,15 @@ def extract_fencer_matches(matrix):
 
     return matches
 
-"""Saves matched fencer info to a CSV file."""
+"""Saves matched fencer info to a CSV file.
+
+Arguments:
+matches -- List of tuples containing fencer pairs and their scores
+filename -- Name of the output CSV file
+
+Returns:
+None - writes to CSV file
+"""
 def save_bracket_to_csv(matches, filename):
     if not filename:
         filename="tableau_bracket.csv"
@@ -167,6 +238,47 @@ def save_bracket_to_csv(matches, filename):
             ])
 
     print(f"Bracket saved to {filename}")
+
+def parseArguments():
+    parser = argparse.ArgumentParser(description="Scrape fencing tournament data from Fencing Time Live.")
+    parser.add_argument("url", help="The tournament URL from fencingtimelive.com")
+    args = parser.parse_args()
+    return args.url
+
+async def run(tournament_url):
+    async with async_playwright() as p:
+        browser = await p.chromium.launch()
+        context = await browser.new_context(
+            viewport={'width': 3000, 'height': 1080} # Set very wide viewport to avoid having the tableau data cut off
+        )
+        page = await context.new_page()
+
+        tournament_name = await fetch_tournament_name(page, tournament_url)
+        tournament_name = sanitize_filename(tournament_name)
+        
+        await page.goto(tournament_url)
+        event_links = await fetch_event_links(page)
+
+        all_tableau_data = []
+        all_tableau_matches = []
+
+        for event_path in event_links:
+            event_id = event_path.split("/")[-1]
+            event_url = f"{BASE_URL}{event_path}"
+            await page.goto(event_url)
+
+            tableau_link = await fetch_tableau_results(page)
+            if tableau_link:
+                tableau_url = f"{BASE_URL}{tableau_link}"
+                tableau_data = await matrix_of_extracted_tableau_data(page, tableau_url, event_id)
+                grouped_matches = extract_fencer_matches(tableau_data)
+
+                all_tableau_data.extend(tableau_data)
+                all_tableau_matches.extend(grouped_matches)
+
+        save_bracket_to_csv(all_tableau_matches, tournament_name + "_paired_matches.csv")
+        await browser.close()
+
 
 async def main(tournament_url):
     async with async_playwright() as p:
@@ -203,8 +315,5 @@ async def main(tournament_url):
         await browser.close()
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Scrape tableau results from Fencing Time Live.")
-    parser.add_argument("tournament_url", help="The URL of the tournament event schedule page.")
-    args = parser.parse_args()
-
-    asyncio.run(main(args.tournament_url))
+    tournament_url = parseArguments()
+    asyncio.run(main(tournament_url))
