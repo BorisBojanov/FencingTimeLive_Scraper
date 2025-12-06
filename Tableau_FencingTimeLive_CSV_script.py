@@ -175,15 +175,19 @@ matches -- List of tuples containing fencer pairs and their scores
 def extract_fencer_matches(matrix):
     matches = []
     matched_rows = set()
-
+    winnerName = "Winner Unknown"
     num_rows = len(matrix)
     num_cols = len(matrix[0]) if matrix else 0
 
-    for col in range(num_cols - 1):  # skip last column (no score in col+1)
+    for col in range(num_cols):     # Iterate through each column. Final round will be the last column
+                                        
         current_fencers = []
+        # Search for score in column to the right (col+1), it should always be there.
+        score_col = col + 1
+        score = ""
 
         for row in range(num_rows):
-            name = matrix[row][col].strip()
+            name = matrix[row][col].strip()            
             if name and row not in matched_rows:
                 current_fencers.append((row, name))
 
@@ -195,23 +199,40 @@ def extract_fencer_matches(matrix):
                     matched_rows.add(row1)
                     matched_rows.add(row2)
 
-                    # Search for score in column to the right (col+1)
-                    score_col = col + 1
-                    score = ""
-
                     # Scan between row1 and row2, inclusive
                     start, end = sorted([row1, row2])
                     for r in range(start, end + 1):
-                        if r < num_rows and score_col < num_cols:
+                        # identify if one of the fencers is called "- BYE -"
+                        if "- BYE -" in (fencer1):
+                            winnerName = fencer2
+                            score = "- BYE -"
+                            # print(f"Found BYE match: {fencer1} vs {fencer2}, winner is {winnerName}", flush=True)  # Debugging
+                            break
+                        elif "- BYE -" in (fencer2):
+                            winnerName = fencer1
+                            score = "- BYE -"
+                            # print(f"Found BYE match: {fencer1} vs {fencer2}, winner is {winnerName}", flush=True)  # Debugging
+                            break
+                        # Check the cell in the score column
+                        elif r < num_rows and score_col < num_cols:
                             possible_score = matrix[r][score_col].strip()
                             if looks_like_score(possible_score):
                                 score = possible_score
+                                winnerName = matrix[r-1][score_col].strip()
                                 break
 
-                    matches.append((fencer1, fencer2, score))
-                    
+                    matches.append((fencer1, fencer2, score, winnerName))
                     current_fencers = []
-
+                
+                # The finalist will be the only fencer in the last column, they have no pair in that round.
+                if len(current_fencers) == 1 and col == num_cols - 1:
+                    (row1, fencer1) = current_fencers[0]
+                    winnerName = fencer1
+                    matched_rows.add(row1)
+                    scoreFinals = matrix[row +1][col].strip()
+                    # print(f" Finalist found: {name} (row {row}) in (col {col}) , score in the Finals was {scoreFinals} \n", flush=True)  # Debugging
+                    matches.append((fencer1, "", scoreFinals, winnerName))
+                    current_fencers = []
     return matches
 
 """Saves matched fencer info to a CSV file.
