@@ -6,12 +6,17 @@ The data is saved to a CSV file with the tournament name in the filename.
 
 
 #Import Dependencies
-import argparse  # Import argparse for command-line arguments
+import argparse
 import asyncio
+import random
 import re
 import csv
 from dotenv import load_dotenv
 from playwright.async_api import async_playwright
+from auth import new_authenticated_page
+
+# Resource types that carry no data we need — block them to reduce server load.
+BLOCKED_RESOURCES = {"image", "stylesheet", "font", "media", "other"}
 
 # Load environment variables
 load_dotenv()
@@ -34,16 +39,19 @@ def convertFrenchToEnglish(weapon):
     else:
         return weapon
 
-#Fetch tournament page
-""" 
-# 	1.	Launch a browser.
-#	2.	Navigate to the tournament page provided my command-line argument.
-#	3.	Extract the tournament name.
-"""
+async def block_unnecessary_resources(page):
+    """Abort requests for resource types we never read (images, fonts, CSS, etc.)."""
+    async def handle_route(route):
+        if route.request.resource_type in BLOCKED_RESOURCES:
+            await route.abort()
+        else:
+            await route.continue_()
+    await page.route("**/*", handle_route)
+
+
 async def fetch_tournament_info(page, tournament_url):
-    """Fetches the tournament name from a given URL."""
     await page.goto(tournament_url)
-    await page.wait_for_load_state("networkidle")
+    await page.wait_for_selector('[class="desktop tournName"]')
 
     try:
         tournament_name = await page.inner_text('[class="desktop tournName"]')
@@ -111,8 +119,9 @@ Fetches fencer results.
 """
 async def process_event(page, path, tournament_name):
     """Scrapes data for a single event."""
+    await asyncio.sleep(random.uniform(1.0, 3.0))
     await page.goto(BASE_URL + path)
-    await page.wait_for_load_state("networkidle")
+    await page.wait_for_selector('[class="desktop eventName"]')
 
     title = (await page.inner_text('[class="desktop eventName"]')).strip()
     time = (await page.inner_text('[class="desktop eventTime"]')).strip()
@@ -202,29 +211,6 @@ def save_to_csv(data, tournament_name):
 
     print(f"Data successfully saved to {filename}")
 
-async def run():
-    """Main function to scrape data and save it to a CSV file."""
-    parser = argparse.ArgumentParser(description="Scrape fencing tournament data from Fencing Time Live.")
-    parser.add_argument("url", help="The tournament URL from fencingtimelive.com")
-    args = parser.parse_args()
-
-    async with async_playwright() as p:
-        browser = await p.chromium.launch()
-        page = await browser.new_page()
-
-        tournament_name = await fetch_tournament_info(page, args.url)
-        event_links = await fetch_event_links(page)
-        all_fencers = []
-
-        for path in event_links:
-            fencer_data = await process_event(page, path, tournament_name)
-            all_fencers.extend(fencer_data)  # Collect data for all events
-
-        await browser.close()
-
-    save_to_csv(all_fencers, tournament_name)  # Pass tournament name to save_to_csv
-
-#Main function
 async def main():
     """Main function to scrape data and save it to a CSV file."""
     parser = argparse.ArgumentParser(description="Scrape fencing tournament data from Fencing Time Live.")
@@ -232,8 +218,8 @@ async def main():
     args = parser.parse_args()
 
     async with async_playwright() as p:
-        browser = await p.chromium.launch()
-        page = await browser.new_page()
+        browser, page = await new_authenticated_page(p)
+        await block_unnecessary_resources(page)
 
         tournament_name = await fetch_tournament_info(page, args.url)
         event_links = await fetch_event_links(page)
@@ -241,11 +227,11 @@ async def main():
 
         for path in event_links:
             fencer_data = await process_event(page, path, tournament_name)
-            all_fencers.extend(fencer_data)  # Collect data for all events
+            all_fencers.extend(fencer_data)
 
         await browser.close()
 
-    save_to_csv(all_fencers, tournament_name)  # Pass tournament name to save_to_csv
+    save_to_csv(all_fencers, tournament_name)
 
 if __name__ == "__main__":
     asyncio.run(main())
