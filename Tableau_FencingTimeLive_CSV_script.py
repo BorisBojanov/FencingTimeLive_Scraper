@@ -15,6 +15,7 @@ import re
 import argparse
 from playwright.async_api import async_playwright
 from collections import defaultdict
+from auth import new_authenticated_page
 
 BASE_URL = "https://www.fencingtimelive.com"
 
@@ -303,7 +304,7 @@ async def run(tournament_url):
 
 async def main(tournament_url):
     async with async_playwright() as p:
-        browser = await p.chromium.launch()
+        browser, page = await new_authenticated_page(p, headless=True)
         context = await browser.new_context(
             viewport={'width': 3000, 'height': 1080} # Set very wide viewport to avoid having the tableau data cut off
         )

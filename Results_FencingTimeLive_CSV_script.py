@@ -12,6 +12,7 @@ import re
 import csv
 from dotenv import load_dotenv
 from playwright.async_api import async_playwright
+from auth import new_authenticated_page
 
 # Load environment variables
 load_dotenv()
@@ -207,8 +208,7 @@ async def run(tournament_url):
 """Main function to scrape data and save it to a CSV file."""
 async def main(tournament_url):
     async with async_playwright() as p:
-        browser = await p.chromium.launch()
-        page = await browser.new_page()
+        browser, page = await new_authenticated_page(p)
 
         tournament_name = await fetch_tournament_info(page, tournament_url)
         event_links = await fetch_event_links(page)

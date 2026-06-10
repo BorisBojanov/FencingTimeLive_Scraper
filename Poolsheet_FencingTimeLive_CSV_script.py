@@ -14,6 +14,7 @@ import csv
 import re
 import argparse
 from playwright.async_api import async_playwright
+from auth import new_authenticated_page
 
 BASE_URL = "https://www.fencingtimelive.com"
 
@@ -306,8 +307,8 @@ async def run(tournament_url):
 async def main(tournament_url):
     """Main function to orchestrate the scraping process."""
     async with async_playwright() as p:
-        browser = await p.chromium.launch()
-        page = await browser.new_page()
+        browser, page = await new_authenticated_page(p, headless=True)
+
 
         # Fetch the tournament name
         tournament_name = await fetch_tournament_name(page, tournament_url)
