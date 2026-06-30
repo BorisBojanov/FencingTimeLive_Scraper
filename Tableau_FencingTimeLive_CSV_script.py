@@ -304,11 +304,14 @@ async def run(tournament_url):
 
 async def main(tournament_url):
     async with async_playwright() as p:
-        browser, page = await new_authenticated_page(p, headless=True)
-        context = await browser.new_context(
+        # Load the saved login session AND set the wide viewport in the same
+        # authenticated context. Creating a separate new_context() here would
+        # discard the logged-in session and get redirected to the login page.
+        browser, page = await new_authenticated_page(
+            p,
+            headless=True,
             viewport={'width': 3000, 'height': 1080} # Set very wide viewport to avoid having the tableau data cut off
         )
-        page = await context.new_page()
 
         tournament_name = await fetch_tournament_name(page, tournament_url)
         tournament_name = sanitize_filename(tournament_name)
