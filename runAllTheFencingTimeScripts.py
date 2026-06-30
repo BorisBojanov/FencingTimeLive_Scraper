@@ -23,9 +23,9 @@ import csv
 from dotenv import load_dotenv
 from playwright.async_api import async_playwright
 
-from Poolsheet_FencingTimeLive_CSV_script import run as run_poolsheet
-from Tableau_FencingTimeLive_CSV_script import run as run_tableau
-from Results_FencingTimeLive_CSV_script import run as run_results
+from Poolsheet_FencingTimeLive_CSV_script import main as run_poolsheet
+from Tableau_FencingTimeLive_CSV_script import main as run_tableau
+from Results_FencingTimeLive_CSV_script import main as run_results
 
 def parseArguments():
     parser = argparse.ArgumentParser(description="Scrape fencing tournament data from Fencing Time Live.")
