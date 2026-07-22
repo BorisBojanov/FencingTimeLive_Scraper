@@ -1,0 +1,78 @@
+{
+  "_readme": [
+    "Overrides for tournaments that ARE officially sanctioned AB Cups but whose raw",
+    "FencingTimeLive tournament name does NOT contain 'AB Cup #N' or 'Alberta Cup N'.",
+    "The auto-detect regex will already catch names like 'Alberta Cup #1' or 'AB Cup #3'.",
+    "Only add tournaments here that need a rename the regex would miss.",
+    "",
+    "Key: sanitized tournament filename basename (spaces -> underscores, illegal chars stripped).",
+    "Value: { season: '24/25'|'25/26'|..., cup_number: int, canonical: '24/25 AB Cup #N' }",
+    "",
+    "Anything else in the CSV directory that is NOT an AB Cup keeps its raw name.",
+    "Move entries out of 'review_needed' into 'overrides' once confirmed (or delete if not an AB Cup)."
+  ],
+  "overrides": {
+    "EFC2024CUP2": {
+      "season": "24/25",
+      "cup_number": 2,
+      "canonical": "24/25 AB Cup #2"
+    },
+    "Don_Laszlo_Memorial_Cup_2024_(AB_Cup_#3)": {
+      "season": "24/25",
+      "cup_number": 3,
+      "canonical": "24/25 AB Cup #3"
+    },
+    "2025_Epic_Fall_Classic_-_AB_Cup_#1": {
+      "season": "25/26",
+      "cup_number": 1,
+      "canonical": "25/26 AB Cup #1"
+    }
+  },
+  "review_needed": {
+    "Alberta_Cup_#1": {
+      "guess_season": "24/25",
+      "guess_cup_number": 1,
+      "note": "No year in name. Scraped Jul 12. Regex will auto-label as AB Cup #1 but season needs confirmation."
+    },
+    "Alberta_Cup_3_2025_-_Red_Deer": {
+      "guess_season": "24/25",
+      "guess_cup_number": 3,
+      "note": "Name says '2025' but 'AB Cup 3 - Red Deer' fits a spring 24/25 event. Conflicts with Don_Laszlo (also 24/25 AB Cup #3) — one of these is wrong. Confirm which."
+    },
+    "Epic_Fall_Classic_2024": {
+      "guess_season": "24/25",
+      "guess_cup_number": null,
+      "note": "Raw name has no AB Cup label. But EFC2024CUP2 also exists — is Epic_Fall_Classic_2024 the SAME event scraped from a different URL, or a different competition? If same as EFC2024CUP2, drop this file / merge with 24/25 AB Cup #2."
+    },
+    "Don_Laszlo_Memorial_Cup_2025": {
+      "guess_season": "25/26",
+      "guess_cup_number": null,
+      "note": "Don Laszlo has historically been an AB Cup (see 2024 entry). Confirm if 2025 edition is also AB Cup and which number."
+    },
+    "Leslie_Palmai_Memorial_Cup": {
+      "guess_season": null,
+      "guess_cup_number": null,
+      "note": "Is Leslie Palmai officially an AB Cup? Also both '2024_Leslie_Palmai_Memorial_Cup' and 'Leslie_Palmai_Memorial_Cup' exist — same event twice?"
+    },
+    "2024_Leslie_Palmai_Memorial_Cup": {
+      "guess_season": null,
+      "guess_cup_number": null,
+      "note": "See Leslie_Palmai_Memorial_Cup note."
+    },
+    "Gladiators_Cup_2025": {
+      "guess_season": null,
+      "guess_cup_number": null,
+      "note": "Is Gladiators Cup an AB Cup?"
+    },
+    "Gladiators_Cup_2026": {
+      "guess_season": "25/26",
+      "guess_cup_number": null,
+      "note": "Is Gladiators Cup an AB Cup?"
+    },
+    "2024_Gladiators_Cup": {
+      "guess_season": "24/25",
+      "guess_cup_number": null,
+      "note": "Is Gladiators Cup an AB Cup?"
+    }
+  }
+}

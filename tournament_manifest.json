@@ -1,0 +1,732 @@
+{
+  "meta": {
+    "csv_dir": "/Users/boris/Desktop/AFA Season 2024-2026",
+    "urls_file": "tournament_urls.txt",
+    "overrides_file": "ab_cup_overrides.json",
+    "url_count": 60,
+    "unique_url_count": 59,
+    "tournament_count": 40,
+    "overrides_count": 3,
+    "review_needed_count": 9
+  },
+  "tournaments": {
+    "2024-25_Calgary_City_Circuit_#1": {
+      "canonical_name": "2024-25 Calgary City Circuit #1",
+      "season": "24/25",
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "explicit",
+      "raw_name": "2024-25_Calgary_City_Circuit_#1",
+      "csv_files": {
+        "bout_orders": "2024-25_Calgary_City_Circuit_#1_bout_orders.csv",
+        "fencing_results": "2024-25_Calgary_City_Circuit_#1_fencing_results.csv",
+        "paired_matches": "2024-25_Calgary_City_Circuit_#1_paired_matches.csv",
+        "pool_sheets": "2024-25_Calgary_City_Circuit_#1_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "2024-25_City_Circuit_#3": {
+      "canonical_name": "2024-25 City Circuit #3",
+      "season": "24/25",
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "explicit",
+      "raw_name": "2024-25_City_Circuit_#3",
+      "csv_files": {
+        "bout_orders": "2024-25_City_Circuit_#3_bout_orders.csv",
+        "fencing_results": "2024-25_City_Circuit_#3_fencing_results.csv",
+        "paired_matches": "2024-25_City_Circuit_#3_paired_matches.csv",
+        "pool_sheets": "2024-25_City_Circuit_#3_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "2024_Gladiators_Cup": {
+      "canonical_name": "2024 Gladiators Cup",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "ambiguous_single_year",
+      "raw_name": "2024_Gladiators_Cup",
+      "csv_files": {
+        "bout_orders": "2024_Gladiators_Cup_bout_orders.csv",
+        "fencing_results": "2024_Gladiators_Cup_fencing_results.csv",
+        "paired_matches": "2024_Gladiators_Cup_paired_matches.csv",
+        "pool_sheets": "2024_Gladiators_Cup_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": true
+    },
+    "2024_Leslie_Palmai_Memorial_Cup": {
+      "canonical_name": "2024 Leslie Palmai Memorial Cup",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "ambiguous_single_year",
+      "raw_name": "2024_Leslie_Palmai_Memorial_Cup",
+      "csv_files": {
+        "bout_orders": "2024_Leslie_Palmai_Memorial_Cup_bout_orders.csv",
+        "fencing_results": "2024_Leslie_Palmai_Memorial_Cup_fencing_results.csv",
+        "paired_matches": "2024_Leslie_Palmai_Memorial_Cup_paired_matches.csv",
+        "pool_sheets": "2024_Leslie_Palmai_Memorial_Cup_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": true
+    },
+    "2024_National_Championships_-_2024_Championnats_Nationaux": {
+      "canonical_name": "2024 National Championships - 2024 Championnats Nationaux",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "unknown",
+      "raw_name": "2024_National_Championships_-_2024_Championnats_Nationaux",
+      "csv_files": {
+        "bout_orders": "2024_National_Championships_-_2024_Championnats_Nationaux_bout_orders.csv",
+        "fencing_results": "2024_National_Championships_-_2024_Championnats_Nationaux_fencing_results.csv",
+        "paired_matches": "2024_National_Championships_-_2024_Championnats_Nationaux_paired_matches.csv",
+        "pool_sheets": "2024_National_Championships_-_2024_Championnats_Nationaux_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "2025-2026_Canada_Cup_#1Coupe_Canada_n1_-_Senior_National_ChampionshipsChampionnats_Nationaux_Seniors": {
+      "canonical_name": "2025-2026 Canada Cup #1Coupe Canada n1 - Senior National ChampionshipsChampionnats Nationaux Seniors",
+      "season": "25/26",
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "explicit",
+      "raw_name": "2025-2026_Canada_Cup_#1Coupe_Canada_n1_-_Senior_National_ChampionshipsChampionnats_Nationaux_Seniors",
+      "csv_files": {
+        "bout_orders": "2025-2026_Canada_Cup_#1Coupe_Canada_n1_-_Senior_National_ChampionshipsChampionnats_Nationaux_Seniors_bout_orders.csv",
+        "fencing_results": "2025-2026_Canada_Cup_#1Coupe_Canada_n1_-_Senior_National_ChampionshipsChampionnats_Nationaux_Seniors_fencing_results.csv",
+        "paired_matches": "2025-2026_Canada_Cup_#1Coupe_Canada_n1_-_Senior_National_ChampionshipsChampionnats_Nationaux_Seniors_paired_matches.csv",
+        "pool_sheets": "2025-2026_Canada_Cup_#1Coupe_Canada_n1_-_Senior_National_ChampionshipsChampionnats_Nationaux_Seniors_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "2025_AFA_Provincial_Championships": {
+      "canonical_name": "2025 AFA Provincial Championships",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "ambiguous_single_year",
+      "raw_name": "2025_AFA_Provincial_Championships",
+      "csv_files": {
+        "bout_orders": "2025_AFA_Provincial_Championships_bout_orders.csv",
+        "fencing_results": "2025_AFA_Provincial_Championships_fencing_results.csv",
+        "paired_matches": "2025_AFA_Provincial_Championships_paired_matches.csv",
+        "pool_sheets": "2025_AFA_Provincial_Championships_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "2025_ARES_Open": {
+      "canonical_name": "2025 ARES Open",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "ambiguous_single_year",
+      "raw_name": "2025_ARES_Open",
+      "csv_files": {
+        "bout_orders": "2025_ARES_Open_bout_orders.csv",
+        "fencing_results": "2025_ARES_Open_fencing_results.csv",
+        "paired_matches": "2025_ARES_Open_paired_matches.csv",
+        "pool_sheets": "2025_ARES_Open_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "2025_Eleanor_Harvey_Fence-O-Mania_3": {
+      "canonical_name": "2025 Eleanor Harvey Fence-O-Mania 3",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "ambiguous_single_year",
+      "raw_name": "2025_Eleanor_Harvey_Fence-O-Mania_3",
+      "csv_files": {
+        "bout_orders": "2025_Eleanor_Harvey_Fence-O-Mania_3_bout_orders.csv",
+        "fencing_results": "2025_Eleanor_Harvey_Fence-O-Mania_3_fencing_results.csv",
+        "paired_matches": "2025_Eleanor_Harvey_Fence-O-Mania_3_paired_matches.csv",
+        "pool_sheets": "2025_Eleanor_Harvey_Fence-O-Mania_3_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "2025_Epic_Fall_Classic_-_AB_Cup_#1": {
+      "canonical_name": "25/26 AB Cup #1",
+      "season": "25/26",
+      "cup_number": 1,
+      "is_ab_cup": true,
+      "label_source": "override",
+      "raw_name": "2025_Epic_Fall_Classic_-_AB_Cup_#1",
+      "csv_files": {
+        "bout_orders": "2025_Epic_Fall_Classic_-_AB_Cup_#1_bout_orders.csv",
+        "fencing_results": "2025_Epic_Fall_Classic_-_AB_Cup_#1_fencing_results.csv",
+        "paired_matches": "2025_Epic_Fall_Classic_-_AB_Cup_#1_paired_matches.csv",
+        "pool_sheets": "2025_Epic_Fall_Classic_-_AB_Cup_#1_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "Alberta_Cup_#1": {
+      "canonical_name": "24/25 AB Cup #1",
+      "season": "24/25",
+      "cup_number": 1,
+      "is_ab_cup": true,
+      "label_source": "auto",
+      "season_confidence": "review_guess",
+      "raw_name": "Alberta_Cup_#1",
+      "csv_files": {
+        "bout_orders": "Alberta_Cup_#1_bout_orders.csv",
+        "fencing_results": "Alberta_Cup_#1_fencing_results.csv",
+        "paired_matches": "Alberta_Cup_#1_paired_matches.csv",
+        "pool_sheets": "Alberta_Cup_#1_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": true
+    },
+    "Alberta_Cup_3_2025_-_Red_Deer": {
+      "canonical_name": "24/25 AB Cup #3",
+      "season": "24/25",
+      "cup_number": 3,
+      "is_ab_cup": true,
+      "label_source": "auto",
+      "season_confidence": "review_guess",
+      "raw_name": "Alberta_Cup_3_2025_-_Red_Deer",
+      "csv_files": {
+        "bout_orders": "Alberta_Cup_3_2025_-_Red_Deer_bout_orders.csv",
+        "fencing_results": "Alberta_Cup_3_2025_-_Red_Deer_fencing_results.csv",
+        "paired_matches": "Alberta_Cup_3_2025_-_Red_Deer_paired_matches.csv",
+        "pool_sheets": "Alberta_Cup_3_2025_-_Red_Deer_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": true
+    },
+    "Ares_Open_2024": {
+      "canonical_name": "Ares Open 2024",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "ambiguous_single_year",
+      "raw_name": "Ares_Open_2024",
+      "csv_files": {
+        "bout_orders": "Ares_Open_2024_bout_orders.csv",
+        "fencing_results": "Ares_Open_2024_fencing_results.csv",
+        "paired_matches": "Ares_Open_2024_paired_matches.csv",
+        "pool_sheets": "Ares_Open_2024_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "CAN-AM_Veterans_Cup_2024": {
+      "canonical_name": "CAN-AM Veterans Cup 2024",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "ambiguous_single_year",
+      "raw_name": "CAN-AM_Veterans_Cup_2024",
+      "csv_files": {
+        "bout_orders": "CAN-AM_Veterans_Cup_2024_bout_orders.csv",
+        "fencing_results": "CAN-AM_Veterans_Cup_2024_fencing_results.csv",
+        "paired_matches": "CAN-AM_Veterans_Cup_2024_paired_matches.csv",
+        "pool_sheets": "CAN-AM_Veterans_Cup_2024_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "CANADA_CUP_#1__SENIOR_NATIONALS_-_COUPE_DU_CANADA_N1__CHAMPIONNATS_NATIONAUX_SENIORS": {
+      "canonical_name": "CANADA CUP #1  SENIOR NATIONALS - COUPE DU CANADA N1  CHAMPIONNATS NATIONAUX SENIORS",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "unknown",
+      "raw_name": "CANADA_CUP_#1__SENIOR_NATIONALS_-_COUPE_DU_CANADA_N1__CHAMPIONNATS_NATIONAUX_SENIORS",
+      "csv_files": {
+        "bout_orders": "CANADA_CUP_#1__SENIOR_NATIONALS_-_COUPE_DU_CANADA_N1__CHAMPIONNATS_NATIONAUX_SENIORS_bout_orders.csv",
+        "fencing_results": "CANADA_CUP_#1__SENIOR_NATIONALS_-_COUPE_DU_CANADA_N1__CHAMPIONNATS_NATIONAUX_SENIORS_fencing_results.csv",
+        "paired_matches": "CANADA_CUP_#1__SENIOR_NATIONALS_-_COUPE_DU_CANADA_N1__CHAMPIONNATS_NATIONAUX_SENIORS_paired_matches.csv",
+        "pool_sheets": "CANADA_CUP_#1__SENIOR_NATIONALS_-_COUPE_DU_CANADA_N1__CHAMPIONNATS_NATIONAUX_SENIORS_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "CANADA_CUP_#2_\u2013_COUPE_DU_CANADA_N2": {
+      "canonical_name": "CANADA CUP #2 \u2013 COUPE DU CANADA N2",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "unknown",
+      "raw_name": "CANADA_CUP_#2_\u2013_COUPE_DU_CANADA_N2",
+      "csv_files": {
+        "bout_orders": "CANADA_CUP_#2_\u2013_COUPE_DU_CANADA_N2_bout_orders.csv",
+        "fencing_results": "CANADA_CUP_#2_\u2013_COUPE_DU_CANADA_N2_fencing_results.csv",
+        "paired_matches": "CANADA_CUP_#2_\u2013_COUPE_DU_CANADA_N2_paired_matches.csv",
+        "pool_sheets": "CANADA_CUP_#2_\u2013_COUPE_DU_CANADA_N2_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "CANADA_CUP_#3_-_COUPE_DU_CANADA_No3": {
+      "canonical_name": "CANADA CUP #3 - COUPE DU CANADA No3",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "unknown",
+      "raw_name": "CANADA_CUP_#3_-_COUPE_DU_CANADA_No3",
+      "csv_files": {
+        "bout_orders": "CANADA_CUP_#3_-_COUPE_DU_CANADA_No3_bout_orders.csv",
+        "fencing_results": "CANADA_CUP_#3_-_COUPE_DU_CANADA_No3_fencing_results.csv",
+        "paired_matches": "CANADA_CUP_#3_-_COUPE_DU_CANADA_No3_paired_matches.csv",
+        "pool_sheets": "CANADA_CUP_#3_-_COUPE_DU_CANADA_No3_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "CFF_Youth_&_Veteran_Cup_West_2024": {
+      "canonical_name": "CFF Youth & Veteran Cup West 2024",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "ambiguous_single_year",
+      "raw_name": "CFF_Youth_&_Veteran_Cup_West_2024",
+      "csv_files": {
+        "bout_orders": "CFF_Youth_&_Veteran_Cup_West_2024_bout_orders.csv",
+        "fencing_results": "CFF_Youth_&_Veteran_Cup_West_2024_fencing_results.csv",
+        "paired_matches": "CFF_Youth_&_Veteran_Cup_West_2024_paired_matches.csv",
+        "pool_sheets": "CFF_Youth_&_Veteran_Cup_West_2024_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "Calgary_City_Championships_2025": {
+      "canonical_name": "Calgary City Championships 2025",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "ambiguous_single_year",
+      "raw_name": "Calgary_City_Championships_2025",
+      "csv_files": {
+        "bout_orders": "Calgary_City_Championships_2025_bout_orders.csv",
+        "fencing_results": "Calgary_City_Championships_2025_fencing_results.csv",
+        "paired_matches": "Calgary_City_Championships_2025_paired_matches.csv",
+        "pool_sheets": "Calgary_City_Championships_2025_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "Calgary_City_Circuit_-_test_Y-10": {
+      "canonical_name": "Calgary City Circuit - test Y-10",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "unknown",
+      "raw_name": "Calgary_City_Circuit_-_test_Y-10",
+      "csv_files": {
+        "bout_orders": "Calgary_City_Circuit_-_test_Y-10_bout_orders.csv",
+        "fencing_results": "Calgary_City_Circuit_-_test_Y-10_fencing_results.csv",
+        "paired_matches": "Calgary_City_Circuit_-_test_Y-10_paired_matches.csv",
+        "pool_sheets": "Calgary_City_Circuit_-_test_Y-10_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "Canadian_Nationals_2025_Championnats_Nationaux": {
+      "canonical_name": "Canadian Nationals 2025 Championnats Nationaux",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "ambiguous_single_year",
+      "raw_name": "Canadian_Nationals_2025_Championnats_Nationaux",
+      "csv_files": {
+        "bout_orders": "Canadian_Nationals_2025_Championnats_Nationaux_bout_orders.csv",
+        "fencing_results": "Canadian_Nationals_2025_Championnats_Nationaux_fencing_results.csv",
+        "paired_matches": "Canadian_Nationals_2025_Championnats_Nationaux_paired_matches.csv",
+        "pool_sheets": "Canadian_Nationals_2025_Championnats_Nationaux_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "City_Circuit_February_2024": {
+      "canonical_name": "City Circuit February 2024",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "ambiguous_single_year",
+      "raw_name": "City_Circuit_February_2024",
+      "csv_files": {
+        "bout_orders": "City_Circuit_February_2024_bout_orders.csv",
+        "fencing_results": "City_Circuit_February_2024_fencing_results.csv",
+        "paired_matches": "City_Circuit_February_2024_paired_matches.csv",
+        "pool_sheets": "City_Circuit_February_2024_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "City_Circuit_May_2024": {
+      "canonical_name": "City Circuit May 2024",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "ambiguous_single_year",
+      "raw_name": "City_Circuit_May_2024",
+      "csv_files": {
+        "bout_orders": "City_Circuit_May_2024_bout_orders.csv",
+        "fencing_results": "City_Circuit_May_2024_fencing_results.csv",
+        "paired_matches": "City_Circuit_May_2024_paired_matches.csv",
+        "pool_sheets": "City_Circuit_May_2024_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "December_Donut_Challenge": {
+      "canonical_name": "December Donut Challenge",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "unknown",
+      "raw_name": "December_Donut_Challenge",
+      "csv_files": {
+        "bout_orders": "December_Donut_Challenge_bout_orders.csv",
+        "fencing_results": "December_Donut_Challenge_fencing_results.csv",
+        "paired_matches": "December_Donut_Challenge_paired_matches.csv",
+        "pool_sheets": "December_Donut_Challenge_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "Don_Laszlo_Memorial_Cup_2024_(AB_Cup_#3)": {
+      "canonical_name": "24/25 AB Cup #3",
+      "season": "24/25",
+      "cup_number": 3,
+      "is_ab_cup": true,
+      "label_source": "override",
+      "raw_name": "Don_Laszlo_Memorial_Cup_2024_(AB_Cup_#3)",
+      "csv_files": {
+        "bout_orders": "Don_Laszlo_Memorial_Cup_2024_(AB_Cup_#3)_bout_orders.csv",
+        "fencing_results": "Don_Laszlo_Memorial_Cup_2024_(AB_Cup_#3)_fencing_results.csv",
+        "paired_matches": "Don_Laszlo_Memorial_Cup_2024_(AB_Cup_#3)_paired_matches.csv",
+        "pool_sheets": "Don_Laszlo_Memorial_Cup_2024_(AB_Cup_#3)_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "Don_Laszlo_Memorial_Cup_2025": {
+      "canonical_name": "Don Laszlo Memorial Cup 2025",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "ambiguous_single_year",
+      "raw_name": "Don_Laszlo_Memorial_Cup_2025",
+      "csv_files": {
+        "bout_orders": "Don_Laszlo_Memorial_Cup_2025_bout_orders.csv",
+        "fencing_results": "Don_Laszlo_Memorial_Cup_2025_fencing_results.csv",
+        "paired_matches": "Don_Laszlo_Memorial_Cup_2025_paired_matches.csv",
+        "pool_sheets": "Don_Laszlo_Memorial_Cup_2025_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": true
+    },
+    "Dragon_Epic_Donut_Challenge": {
+      "canonical_name": "Dragon Epic Donut Challenge",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "unknown",
+      "raw_name": "Dragon_Epic_Donut_Challenge",
+      "csv_files": {
+        "bout_orders": "Dragon_Epic_Donut_Challenge_bout_orders.csv",
+        "fencing_results": "Dragon_Epic_Donut_Challenge_fencing_results.csv",
+        "paired_matches": "Dragon_Epic_Donut_Challenge_paired_matches.csv",
+        "pool_sheets": "Dragon_Epic_Donut_Challenge_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "EFC2024CUP2": {
+      "canonical_name": "24/25 AB Cup #2",
+      "season": "24/25",
+      "cup_number": 2,
+      "is_ab_cup": true,
+      "label_source": "override",
+      "raw_name": "EFC2024CUP2",
+      "csv_files": {
+        "bout_orders": "EFC2024CUP2_bout_orders.csv",
+        "fencing_results": "EFC2024CUP2_fencing_results.csv",
+        "paired_matches": "EFC2024CUP2_paired_matches.csv",
+        "pool_sheets": "EFC2024CUP2_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "EFC_Youth_CUP_and_AWG2026": {
+      "canonical_name": "EFC Youth CUP and AWG2026",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "ambiguous_single_year",
+      "raw_name": "EFC_Youth_CUP_and_AWG2026",
+      "csv_files": {
+        "bout_orders": "EFC_Youth_CUP_and_AWG2026_bout_orders.csv",
+        "fencing_results": "EFC_Youth_CUP_and_AWG2026_fencing_results.csv",
+        "paired_matches": "EFC_Youth_CUP_and_AWG2026_paired_matches.csv",
+        "pool_sheets": "EFC_Youth_CUP_and_AWG2026_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "Eleanor_Harvey_Fence-o-mania_2": {
+      "canonical_name": "Eleanor Harvey Fence-o-mania 2",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "unknown",
+      "raw_name": "Eleanor_Harvey_Fence-o-mania_2",
+      "csv_files": {
+        "bout_orders": "Eleanor_Harvey_Fence-o-mania_2_bout_orders.csv",
+        "fencing_results": "Eleanor_Harvey_Fence-o-mania_2_fencing_results.csv",
+        "paired_matches": "Eleanor_Harvey_Fence-o-mania_2_paired_matches.csv",
+        "pool_sheets": "Eleanor_Harvey_Fence-o-mania_2_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "Epic_Fall_Classic_2024": {
+      "canonical_name": "Epic Fall Classic 2024",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "ambiguous_single_year",
+      "raw_name": "Epic_Fall_Classic_2024",
+      "csv_files": {
+        "bout_orders": "Epic_Fall_Classic_2024_bout_orders.csv",
+        "fencing_results": "Epic_Fall_Classic_2024_fencing_results.csv",
+        "paired_matches": "Epic_Fall_Classic_2024_paired_matches.csv",
+        "pool_sheets": "Epic_Fall_Classic_2024_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": true
+    },
+    "Fencing_Calgary_City_Circuit_#2_-_2025": {
+      "canonical_name": "Fencing Calgary City Circuit #2 - 2025",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "ambiguous_single_year",
+      "raw_name": "Fencing_Calgary_City_Circuit_#2_-_2025",
+      "csv_files": {
+        "bout_orders": "Fencing_Calgary_City_Circuit_#2_-_2025_bout_orders.csv",
+        "fencing_results": "Fencing_Calgary_City_Circuit_#2_-_2025_fencing_results.csv",
+        "paired_matches": "Fencing_Calgary_City_Circuit_#2_-_2025_paired_matches.csv",
+        "pool_sheets": "Fencing_Calgary_City_Circuit_#2_-_2025_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "Final_Epic_Donut_Challenge": {
+      "canonical_name": "Final Epic Donut Challenge",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "unknown",
+      "raw_name": "Final_Epic_Donut_Challenge",
+      "csv_files": {
+        "bout_orders": "Final_Epic_Donut_Challenge_bout_orders.csv",
+        "fencing_results": "Final_Epic_Donut_Challenge_fencing_results.csv",
+        "paired_matches": "Final_Epic_Donut_Challenge_paired_matches.csv",
+        "pool_sheets": "Final_Epic_Donut_Challenge_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "Gladiators_Cup_2025": {
+      "canonical_name": "Gladiators Cup 2025",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "ambiguous_single_year",
+      "raw_name": "Gladiators_Cup_2025",
+      "csv_files": {
+        "bout_orders": "Gladiators_Cup_2025_bout_orders.csv",
+        "fencing_results": "Gladiators_Cup_2025_fencing_results.csv",
+        "paired_matches": "Gladiators_Cup_2025_paired_matches.csv",
+        "pool_sheets": "Gladiators_Cup_2025_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": true
+    },
+    "Gladiators_Cup_2026": {
+      "canonical_name": "Gladiators Cup 2026",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "ambiguous_single_year",
+      "raw_name": "Gladiators_Cup_2026",
+      "csv_files": {
+        "bout_orders": "Gladiators_Cup_2026_bout_orders.csv",
+        "fencing_results": "Gladiators_Cup_2026_fencing_results.csv",
+        "paired_matches": "Gladiators_Cup_2026_paired_matches.csv",
+        "pool_sheets": "Gladiators_Cup_2026_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": true
+    },
+    "JujieOPEN2025": {
+      "canonical_name": "JujieOPEN2025",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "ambiguous_single_year",
+      "raw_name": "JujieOPEN2025",
+      "csv_files": {
+        "bout_orders": "JujieOPEN2025_bout_orders.csv",
+        "fencing_results": "JujieOPEN2025_fencing_results.csv",
+        "paired_matches": "JujieOPEN2025_paired_matches.csv",
+        "pool_sheets": "JujieOPEN2025_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "Leslie_Palmai_Memorial_Cup": {
+      "canonical_name": "Leslie Palmai Memorial Cup",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "unknown",
+      "raw_name": "Leslie_Palmai_Memorial_Cup",
+      "csv_files": {
+        "bout_orders": "Leslie_Palmai_Memorial_Cup_bout_orders.csv",
+        "fencing_results": "Leslie_Palmai_Memorial_Cup_fencing_results.csv",
+        "paired_matches": "Leslie_Palmai_Memorial_Cup_paired_matches.csv",
+        "pool_sheets": "Leslie_Palmai_Memorial_Cup_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": true
+    },
+    "March_Donut_Challenge": {
+      "canonical_name": "March Donut Challenge",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "unknown",
+      "raw_name": "March_Donut_Challenge",
+      "csv_files": {
+        "bout_orders": "March_Donut_Challenge_bout_orders.csv",
+        "paired_matches": "March_Donut_Challenge_paired_matches.csv",
+        "pool_sheets": "March_Donut_Challenge_pool_sheets.csv"
+      },
+      "complete": false,
+      "missing_files": [
+        "fencing_results"
+      ],
+      "in_review_needed": false
+    },
+    "May_Donut_Challenge": {
+      "canonical_name": "May Donut Challenge",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "unknown",
+      "raw_name": "May_Donut_Challenge",
+      "csv_files": {
+        "bout_orders": "May_Donut_Challenge_bout_orders.csv",
+        "fencing_results": "May_Donut_Challenge_fencing_results.csv",
+        "paired_matches": "May_Donut_Challenge_paired_matches.csv",
+        "pool_sheets": "May_Donut_Challenge_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    },
+    "October_Donut_Tournament": {
+      "canonical_name": "October Donut Tournament",
+      "season": null,
+      "cup_number": null,
+      "is_ab_cup": false,
+      "label_source": "raw",
+      "season_confidence": "unknown",
+      "raw_name": "October_Donut_Tournament",
+      "csv_files": {
+        "bout_orders": "October_Donut_Tournament_bout_orders.csv",
+        "fencing_results": "October_Donut_Tournament_fencing_results.csv",
+        "paired_matches": "October_Donut_Tournament_paired_matches.csv",
+        "pool_sheets": "October_Donut_Tournament_pool_sheets.csv"
+      },
+      "complete": true,
+      "missing_files": [],
+      "in_review_needed": false
+    }
+  }
+}
