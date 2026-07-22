@@ -123,8 +123,8 @@ async def process_event(page, path, tournament_name):
         "tournament": tournament_name,
         "level": title_parts[0],
         "sex": title_parts[1],
-        "weapon": "title_parts",
-        "full_text": convertFrenchToEnglish(title_parts[-1]),
+        "weapon": convertFrenchToEnglish(title_parts[-1]),
+        "full_text": title_parts,
         "time": time,
         "event_url": BASE_URL + path
     }
@@ -150,8 +150,9 @@ async def fetch_fencer_results(page):
         data = await row.query_selector_all("td")
         place = str(await data[0].inner_text())
         fencer = await data[1].inner_text()
-        club = await data[2].inner_text()
-        region = await data[3].inner_text()
+
+        club = await data[2].inner_text() if len(data) >= 3 else "IDK_Bro"
+        region = await data[3].inner_text() if len(data) >= 4 else "IDK_Bro"
 
         fencers.append({"place": place, "fencer": fencer, "club": club, "region": region})
 

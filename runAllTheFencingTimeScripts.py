@@ -38,6 +38,15 @@ async def main(tournament_url):
     await run_tableau(tournament_url)
     await run_results(tournament_url)
 
+async def textInput():
+    with open('tournament_urls.txt', 'r') as file:
+        urls = [line.strip() for line in file.readlines() if line.strip()]
+    for tournament_url in urls:
+        print(f"Running scripts for tournament URL: {tournament_url}")
+        await main(tournament_url)
+
 if __name__ == "__main__":
-    tournament_url = parseArguments()
-    asyncio.run(main(tournament_url))
+    # tournament_url = parseArguments()
+    # asyncio.run(main(tournament_url))
+
+    asyncio.run(textInput())

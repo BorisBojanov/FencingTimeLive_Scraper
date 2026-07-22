@@ -133,9 +133,14 @@ async def scrape_pool_results(page, event_id, rid, pool_id, tournament_name):
 
     title = (await page.inner_text('[class="desktop eventName"]')).strip()
     title_parts = title.split()
-    if len(title_parts) == 3:
+    if len(title_parts) >= 3:
         title_parts[1] = title_parts[1].split("'")[0]
-    title_parts[2] = convert_french_to_english(title_parts[2])
+        title_parts[2] = convert_french_to_english(title_parts[2])
+    elif len(title_parts) == 2:
+        title_parts[1] = convert_french_to_english(title_parts[1])
+    elif len(title_parts) == 1:
+        title_parts[0] = convert_french_to_english(title_parts[0])
+    # print(f"[DEBUG] Event title: {repr(title)} → parts: {title_parts}")
     results = []
     try:
         rows = await page.query_selector_all("table tbody tr")
